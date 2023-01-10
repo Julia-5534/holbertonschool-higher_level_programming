@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-for ch in range(97, 123):
-    print("{}".format(ch), end="")
+for ltr in range(97, 123):
+    print("{:c}".format(ltr), end="")
