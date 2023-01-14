@@ -3,7 +3,7 @@
 def print_matrix_integer(matrix=[[]]):
     for row in matrix:
         for item in row:
-            print("{:>3}".format(item), end=" ")
+            print("{:>5}".format(item), end="")
         print()
 
 # This function takes in a matrix of integers as an argument and iterates through each row and item in the matrix.
