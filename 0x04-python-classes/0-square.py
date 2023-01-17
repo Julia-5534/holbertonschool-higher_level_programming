@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-"""
-Module 0-square
-Defines class Square
-"""
+"""The Square Mod Squad"""
 
 
 class Square:
-    """Empty class"""
-    pass
+    """Defines a square"""
+    def __init__(self, size=None):
+        """Initializes a square with a size"""
+        self.__size = size
