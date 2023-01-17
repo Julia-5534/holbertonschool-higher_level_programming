@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""This Square Mod Squad"""
+"""The Square Mod Squad"""
 
 
 class Square:
