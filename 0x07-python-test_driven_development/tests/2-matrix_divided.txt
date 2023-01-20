@@ -1,0 +1,10 @@
+========================
+Module: 2-matrix_divided
+========================
+
+Matrix Values
+=============
+
+``matrix_divided()`` returns a new matrix containing elements of the
+input matrix divided by some number.  The input matrix must be a list
+of lists of integers or floats.
