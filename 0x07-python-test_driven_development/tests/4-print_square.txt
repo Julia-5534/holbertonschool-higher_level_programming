@@ -1,13 +1,21 @@
-def test_print_square():
-    """
-    Test for the print_square function
-    
+======================
+Module: 4-print_square
+======================
+
+Types
+=====
+``print_square()`` prints a square of size `size`using the `#`
+character.  `size` should be a positive integer.
+
+::
+
+	>>> print_square = __import__('4-print_square').print_square
     >>> print_square(5)
-    ####
-    ####
-    ####
-    ####
-    ####
+    #####
+    #####
+    #####
+    #####
+    #####
     >>> print_square(3)
     ###
     ###
