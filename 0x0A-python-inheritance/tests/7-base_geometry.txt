@@ -1,0 +1,179 @@
+
+# run test with python3 -m doctest -v ./tests/7-base_geometry.txt
+
+===============================
+ How to Use 7-base_geometry.py
+===============================
+
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+GOOD USER
+=========
+
+Instances of class has type...
+
+::
+
+    >>> pumpbase = BaseGeometry()
+    >>> type(pumpbase)
+    <class '7-base_geometry.BaseGeometry'>
+
+Pass in a name (of any type) and value (positive int)...
+
+::
+
+    >>> pumpbase = BaseGeometry()
+    >>> pumpbase.integer_validator("UWU", 4)
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator(4, 4)
+
+BAD USER
+========
+
+Instantiation requires valid inputs...
+
+No char value
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("height", 'v')
+    Traceback (most recent call last):
+    TypeError: height must be an integer
+
+Don't forget to pass in value
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("height")
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+No negative value
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("height", -4)
+    Traceback (most recent call last):
+    ValueError: height must be greater than 0
+
+No list of values
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("height", [3, 3])
+    Traceback (most recent call last):
+    TypeError: height must be an integer
+
+Don't forget to pass in anything
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator()
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+No NoneType value
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("None", None)
+    Traceback (most recent call last):
+    TypeError: None must be an integer
+
+No boolean value
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("None", True)
+    Traceback (most recent call last):
+    TypeError: None must be an integer
+
+area method not implemented yet
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.area()
+    Traceback (most recent call last):
+    Exception: area() is not implemented
+
+don't pass in excess args to non implemented method
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.area("SUGOI")
+    Traceback (most recent call last):
+    TypeError: area() takes 1 positional argument but 2 were given
+
+don't pass in excess args to int valid method
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("height", 4, "weedth")
+    Traceback (most recent call last):
+    TypeError: integer_validator() takes 3 positional arguments but 4 were given
+
+remember, just supply args to instance of class
+
+::
+
+    >>> pb = BaseGeometry("Height")
+    Traceback (most recent call last):
+    TypeError: BaseGeometry() takes no arguments
+
+no richards
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("johnson", {"dick": 4})
+    Traceback (most recent call last):
+    TypeError: johnson must be an integer
+
+no woopsy toopsy
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("johnson", (8, 6))
+    Traceback (most recent call last):
+    TypeError: johnson must be an integer
+
+value can't be zero
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("johnson", 0)
+    Traceback (most recent call last):
+    ValueError: johnson must be greater than 0
+
+value can't be string
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("johnson", "dick")
+    Traceback (most recent call last):
+    TypeError: johnson must be an integer
+
+still no johnsons, even in a set
+
+::
+
+    >>> pb = BaseGeometry()
+    >>> pb.integer_validator("johnson", {"dick", "johnson"})
+    Traceback (most recent call last):
+    TypeError: johnson must be an integer
