@@ -7,8 +7,8 @@ class Square(Rectangle):
     """It's Hip Tp Be Square"""
     def __init__(self, size):
         self.integer_validator("size", size)
-        self.__size = size
         super().__init__(size, size)
+        self.__size = size
 
 
 def __str__(self):
