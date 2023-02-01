@@ -1,115 +1,130 @@
 #!/usr/bin/python3
-"""creating Rectangle class"""
+"""class Rectangle is also based
+    due to inheritating the basedness
+"""
 from models.base import Base
 
 
 class Rectangle(Base):
-    """creating new class"""
+    """
+    create based class rectangle which is based off based Base
+    """
     def __init__(self, width, height, x=0, y=0, id=None):
+        """
+        Initialize based rectangle values width, height, x, y, and id
+        Based Args:
+            width: width of rectangle
+            height: height of rectangle
+            x: x coordinate of rectangle
+            y: y coordinate of rectangle
+            id: id of rectangle
+        """
         super().__init__(id)
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @property
     def width(self):
-        """width of rectangle"""
+        """returns width of based rectangle"""
         return self.__width
 
     @width.setter
-    def width(self, value):
-        """width setter"""
-        if type(value) is not int:
+    def width(self, width):
+        """sets width of based rectangle"""
+        if type(width) is not int:
             raise TypeError("width must be an integer")
-        if value <= 0:
+        if width <= 0:
             raise ValueError("width must be > 0")
-        self.__width = value
+        self.__width = width
 
     @property
     def height(self):
-        """height of rectangle"""
+        """returns height of based rectangle"""
         return self.__height
 
     @height.setter
-    def height(self, value):
-        """height setter"""
-        if type(value) is not int:
+    def height(self, height):
+        """sets height of based rectangle"""
+        if type(height) is not int:
             raise TypeError("height must be an integer")
-        if value <= 0:
+        if height <= 0:
             raise ValueError("height must be > 0")
-        self.__height = value
+        self.__height = height
 
     @property
     def x(self):
-        """x value of rectangle"""
+        """returns x coordinate of based rectangle"""
         return self.__x
 
     @x.setter
-    def x(self, value):
-        """x setter"""
-        if type(value) is not int:
+    def x(self, x):
+        """sets x coordinate of based rectangle"""
+        if type(x) is not int:
             raise TypeError("x must be an integer")
-        if value < 0:
+        if x < 0:
             raise ValueError("x must be >= 0")
-        self.__x = value
+        self.__x = x
 
     @property
     def y(self):
-        """y value of rectangle"""
+        """returns x coordinate of based rectangle"""
         return self.__y
 
     @y.setter
-    def y(self, value):
-        """y setter"""
-        if type(value) is not int:
+    def y(self, y):
+        """sets y coordinate of based rectangle"""
+        if type(y) is not int:
             raise TypeError("y must be an integer")
-        if value < 0:
+        if y < 0:
             raise ValueError("y must be >= 0")
-        self.__y = value
+        self.__y = y
 
     def area(self):
-        """returns area"""
+        """returns the area of Rectangle"""
         return self.width * self.height
 
     def display(self):
-        """display function"""
-        for h in range(self.y):
+        """Print rectangle in stdout with character #"""
+        for y in range(self.y):
             print()
         for i in range(self.height):
-            print(" " * self.x + "#" * self.width)
-
-    def __str__(self):
-        """str function"""
-        value = "[Rectangle] " + "({}) ".format(self.id)
-        value += "{}/{} - ".format(self.x, self.y)
-        value += "{}/{}".format(self.width, self.height)
-        return value
+            for x in range(self.x):
+                print(" ", end="")
+            for j in range(self.width):
+                print('#', end="")
+            print()
 
     def update(self, *args, **kwargs):
-        """ Assigns key/value arguments to attributes """
-        if args:
-            for i, arg in enumerate(args):
-                if i == 0:
-                    self.id = arg
-                elif i == 1:
-                    self.width = arg
-                elif i == 2:
-                    self.height = arg
-                elif i == 3:
-                    self.x = arg
-                elif i == 4:
-                    self.y = arg
+        """assigns a key/value argument to attributes
+        **kwargs can be thought of as a double pointer
+            to a dictionary: key/value
+        """
+        argList = ["id", "width", "height", "x", "y"]
+
+        if args and len(args) != 0:
+            for i in range(len(args)):
+                setattr(self, argList[i], args[i])
         else:
             for key, value in kwargs.items():
-                setattr(self, key, value)
+                if hasattr(self, key):
+                    setattr(self, key, value)
 
     def to_dictionary(self):
-        """ Returns the dictionary representation of a Rectangle """
+        """returns dictionary representation of based rectangle"""
         return {
-            "id": self.id,
-            "width": self.width,
-            "height": self.height,
             "x": self.x,
-            "y": self.y
+            "y": self.y,
+            "id": self.id,
+            "height": self.height,
+            "width": self.width
         }
+
+    def __str__(self):
+        """
+        Overrides the built-in __str__ method to return a string in the format:
+        [Rectangle] (<id>) <x>/<y> - <width>/<height>
+        """
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y,
+                                                       self.width, self.height)
