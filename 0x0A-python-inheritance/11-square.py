@@ -4,14 +4,19 @@ Rectangle = __import__('9-rectangle').Rectangle
 
 
 class Square(Rectangle):
-    """It's Hip Tp Be Square"""
+    """Square Class Inherits From Rectangle"""
     def __init__(self, size):
+        """__init__ - initialize a square class
+        Args:
+            size (int): size of square
+        """
         self.integer_validator("size", size)
-        super().__init__(size, size)
         self.__size = size
 
+    def area(self):
+        """returns the area of square"""
+        return self.__size * self.__size
 
-def __str__(self):
-    square_string = "[Square] "
-    square_string += str(self.__size) + "/" + str(self.__size)
-    return square_string
+    def __str__(self):
+        """returns square description"""
+        return f"[Square] {self.__size}/{self.__size}"
