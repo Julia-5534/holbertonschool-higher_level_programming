@@ -1,0 +1,3 @@
+-- DISPLAYS NUMBER OF RECORDS WITH id = 89
+-- FROM THE TABLE first_table
+SELECT COUNT(id) FROM first_table WHERE id = 89;

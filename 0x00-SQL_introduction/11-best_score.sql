@@ -1,0 +1,5 @@
+-- LISTS RECORDS WITH SCORE >= 10 FROM SECOND_TALE
+SELECT score, name
+FROM second_table
+WHERE score >= 10
+ORDER BY score DESC;
