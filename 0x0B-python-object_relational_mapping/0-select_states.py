@@ -9,6 +9,6 @@ if __name__ == '__main__':
 
     db = MySQLdb.connect(user=username, passwd=password, db=db_name)
     cur = db.cursor()
-    cur.execute("SELECT * FROM states ORDER BY id ASC")
+    cur.execute("SELECT * FROM states")
     for state in cur.fetchall():
         print(state)
