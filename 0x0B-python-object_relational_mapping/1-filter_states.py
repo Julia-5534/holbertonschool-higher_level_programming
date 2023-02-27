@@ -4,7 +4,7 @@ import MySQLdb
 import sys
 
 if __name__ == '__main__':
-    
+
     def print_stateN():
         """
         Print states from database
