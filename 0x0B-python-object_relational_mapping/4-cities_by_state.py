@@ -8,7 +8,16 @@ if __name__ == '__main__':
     password = sys.argv[2]
     db_name = sys.argv[3]
 
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=db_name)
+
+def print_cities_states():
+    """
+    Method to list all cities
+    """
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=username,
+                         passwd=password,
+                         db=db_name)
     cur = db.cursor()
 
     query = "SELECT * FROM cities ORDER BY id ASC"
