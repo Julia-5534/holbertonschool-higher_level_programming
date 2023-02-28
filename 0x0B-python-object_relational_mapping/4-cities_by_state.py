@@ -1,33 +1,14 @@
 #!/usr/bin/python3
 """Task 4"""
-import MySQLdb
 import sys
+import MySQLdb
 
-if __name__ == '__main__':
-    username = sys.argv[1]
-    password = sys.argv[2]
-    db_name = sys.argv[3]
-
-
-def print_cities_states():
-    """
-    Method to list all cities
-    """
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=username,
-                         passwd=password,
-                         db=db_name)
+if __name__ == "__main__":
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
     cur = db.cursor()
-
-    query = "SELECT cities.id, cities.name, states.name\
-            FROM cities, states\
-            WHERE cities.state_id = states.id\
-            ORDER BY cities.id"
-    cur.execute(query)
-
-    for row in cur.fetchall():
-        print(row)
-
-    cur.close()
-    db.close()
+    cur.execute("SELECT cities.id, cities.name, states.name \
+                FROM cities \
+                INNER JOIN states \
+                ON cities.state_id = states.id \
+                ORDER BY cities.id")
+    [print(city) for city in cur.fetchall()]
