@@ -1,32 +1,75 @@
-#!/usr/bin/python3
-"""
-Script that lists all City objects from the database hbtn_0e_14_usa.
-"""
+.filters {
+  background-color:white;
+  height:70px;
+  width:100%;
+  border: 1px #ddd solid;
+  border-radius: 4px;
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items: center;
+}
 
-import sys
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
-from model_state import Base, State
-from model_city import City
+.filters button {
+  font-size: 18px;
+  background-color: #ff5a5f;
+  color: #fff;
+  height: 48px;
+  width: 20%;
+  border-radius: 4px;
+  border:none;
+  margin-right: 30px;
+  margin-left: auto;
+}
 
+.filters button:hover {
+  opacity:90%;
+}
 
-if __name__ == '__main__':
-    # Set up database connection
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-    engine = create_engine(f'mysql+mysqldb://{username}:{password}@localhost:3306/{database}')
-    Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
+.filters .locations {
+  height: 100%;
+  width: 25%;
+  border-right:#ddd 1px solid;
+  margin-bottom:0;
+}
 
-    # Fetch all cities and states
-    cities = session.query(City).order_by(City.id).all()
-    states = session.query(State).order_by(State.id).all()
+.filters .amenities {
+  height: 100%;
+  width: 25%;
+}
 
-    # Print cities grouped by state
-    for state in states:
-        cities_in_state = [city for city in cities if city.state_id == state.id]
-        city_names = [city.name for city in cities_in_state]
-        if city_names:
-            print(f'{state.name}: {", ".join(city_names)}')
+.filters .popover {
+  visibility: hidden;
+  background-color: #fafafa;
+  border: #ddd 1px solid;
+  border-radius: 4px;
+  padding:15%;
+  z-index: 1000;
+}
+
+.filters .popover h2 { /*states*/
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.filters ul {
+  list-style-type: none;
+}
+
+.filters div:hover .popover {
+  visibility: visible;
+}
+
+.filters h3 {
+  font-weight:600;
+  margin-left: 15%;
+  margin-bottom: 0%;
+}
+
+.filters h4 {
+  font-weight:400;
+  font-size:14px;
+  margin-left: 15%;
+  margin-top: 0%;
+  margin-bottom: 9%;
+}
