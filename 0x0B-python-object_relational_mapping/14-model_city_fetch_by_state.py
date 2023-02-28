@@ -1,75 +1,17 @@
-.filters {
-  background-color:white;
-  height:70px;
-  width:100%;
-  border: 1px #ddd solid;
-  border-radius: 4px;
-  display: flex;
-  flex-direction:row;
-  justify-content:center;
-  align-items: center;
-}
+#!/usr/bin/python3
+"""test comment"""
+import sys
+from sqlalchemy import create_engine
+from model_state import State
+from model_city import City
+from sqlalchemy.orm import sessionmaker
 
-.filters button {
-  font-size: 18px;
-  background-color: #ff5a5f;
-  color: #fff;
-  height: 48px;
-  width: 20%;
-  border-radius: 4px;
-  border:none;
-  margin-right: 30px;
-  margin-left: auto;
-}
-
-.filters button:hover {
-  opacity:90%;
-}
-
-.filters .locations {
-  height: 100%;
-  width: 25%;
-  border-right:#ddd 1px solid;
-  margin-bottom:0;
-}
-
-.filters .amenities {
-  height: 100%;
-  width: 25%;
-}
-
-.filters .popover {
-  visibility: hidden;
-  background-color: #fafafa;
-  border: #ddd 1px solid;
-  border-radius: 4px;
-  padding:15%;
-  z-index: 1000;
-}
-
-.filters .popover h2 { /*states*/
-  margin-bottom: 5px;
-  font-size: 16px;
-}
-
-.filters ul {
-  list-style-type: none;
-}
-
-.filters div:hover .popover {
-  visibility: visible;
-}
-
-.filters h3 {
-  font-weight:600;
-  margin-left: 15%;
-  margin-bottom: 0%;
-}
-
-.filters h4 {
-  font-weight:400;
-  font-size:14px;
-  margin-left: 15%;
-  margin-top: 0%;
-  margin-bottom: 9%;
-}
+if __name__ == '__main__':
+    engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
+                           .format(sys.argv[1], sys.argv[2],
+                                   sys.argv[3]), pool_pre_ping=True)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    for city, state in session.query(City, State) \
+            .filter(State.id == City.state_id).order_by(City.id):
+        print("{}: ({}) {}".format(state.name, city.id, city.name))
