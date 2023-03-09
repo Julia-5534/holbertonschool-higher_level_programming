@@ -4,11 +4,11 @@ Script that takes in a URL, sends a request to the
 URL and displays the value of the `X-Request-Id`
 variable found in the header of the response.
 """
-from urllib import request
-import sys
+from urllib.request import Request, urlopen
+from sys import argv
 
 if __name__ == "__main__":
-    http = sys.argv[1]
-    req = request.Request(http)
-    with request.urlopen(req) as response:
-        print(response.info()['X_Request_Id'])
+    request = Request(argv[1])
+    with urlopen(request) as webpage:
+        header = webpage.info()
+        print(header['X-Request-Id'])
