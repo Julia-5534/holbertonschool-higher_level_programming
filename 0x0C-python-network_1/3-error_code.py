@@ -13,4 +13,4 @@ if __name__ == "__main__":
         with urlopen(url) as site:
             print(site.read().decode("utf-8"))
     except HTTPError as error:
-        print(f"Error code: {error.code}")
+        print("Error code: {}".format(error.code))
